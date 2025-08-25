@@ -26,7 +26,7 @@ def safe_firecrawl_scrape(url, formats=["html"]):
             wait_time = backoff
             print(f"Rate limit exceeded. Retry {retry + 1} of {MAX_RETRIES} after {wait_time}s...")
             time.sleep(wait_time)
-            backoff *= 2  # exponential backoff
+            backoff *= 2
             retry += 1
         except Exception as e:
             print(f"Error during scraping {url}: {e}")
@@ -161,9 +161,9 @@ def main():
             "licensees": licensees
         })
 
-    with open("sfc_licensee_data_with_retry.json", "w", encoding="utf-8") as f:
+    with open("sfc_licensee_data.json", "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
-    print("Saved data to sfc_licensee_data_with_retry.json")
+
 
 
 if __name__ == "__main__":
